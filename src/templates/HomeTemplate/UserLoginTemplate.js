@@ -1,12 +1,21 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import { Button } from "antd";
 
-export default function UserLoginTemplate() {
+export const UserLoginTemplate = (propsRoute) => {
+  let { Component, ...restRoute } = propsRoute;
+
   return (
-    <div>
-      <hr />
-      <h3>This is User Login Template</h3>
-      <Button type="primary">testing button ant</Button>
-    </div>
+    <Route
+      {...restRoute}
+      render={(propsRoute) => {
+        return (
+          <>
+            <Button></Button>
+            <Component {...propsRoute} />
+          </>
+        );
+      }}
+    />
   );
-}
+};
