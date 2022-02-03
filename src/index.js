@@ -3,18 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+// set up Ant Design CSS
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
-import { rootReducer } from "./redux/reducers/rootReducer";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import createSagaMiddleware from "redux-saga";
 
-const store = createStore(rootReducer);
+// set up Redux
+import { Provider } from "react-redux";
+import store from "./redux/configStore";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

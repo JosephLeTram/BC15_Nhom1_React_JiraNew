@@ -1,30 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Input } from "antd";
-import {
-  UserOutlined,
-  LockOutlined,
-  FacebookOutlined,
-  TwitterOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, LockOutlined, TwitterOutlined } from "@ant-design/icons";
 
 import { withFormik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
-import { USER_SIGNIN_API } from "../redux/constants/CyberJiraNew";
 import { signin_action } from "../redux/actions/JiraNewAction";
 
 function Login(props) {
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    window.onresize = () => {
+      setSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+  });
   const { values, touched, errors, handleChange, handleBlur, handleSubmit } =
     props;
+
   return (
     <div>
       {/* Make row and 2 col-6 to seperate login form and representative picture */}
+
       <div className="row">
         <div
           className="col-sm-6"
           style={{
-            height: "100vh",
-            width: window.innerWidth / 2,
+            height: size.height,
+            width: size.width,
             backgroundImage: "url(https://picsum.photos/500)",
             backgroundRepeat: "no-repeat",
             backgroundSize: "100%",
@@ -42,7 +51,7 @@ function Login(props) {
             style={{ height: window.innerHeight }}
           >
             <h3 className="text-center display-4 font-weight-bold">
-              {props.displayName} Jira
+              CyberSoft Jira Login
             </h3>
             <div className="mt-3">
               <Input
@@ -125,9 +134,6 @@ const LoginWithFormik = withFormik({
 
   handleSubmit: (values, { props, setSubmitting }) => {
     props.dispatch(signin_action(values.email, values.password));
-
-    // console.log(props);
-    // console.log(values);
   },
 
   displayName: "CyberSoft Jira Login",

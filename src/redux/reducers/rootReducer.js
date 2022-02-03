@@ -1,5 +1,12 @@
 import { combineReducers } from "redux";
+import signInReducer from "./signInReducer";
+import { HistoryReducer } from "./HistoryReducer";
+import { UserReducer } from "./userReducer";
 
-const stateDefault = 
+const rootReducer = combineReducers({
+  signInReducer,
+  HistoryReducer,
+  UserReducer,
+});
 
-export const rootReducer = combineReducers({});
+export default rootReducer;

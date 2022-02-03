@@ -1,6 +1,7 @@
 import { all } from "redux-saga/effects";
-import * as UserJiraSaga from "../UserJiraSaga";
+import * as SignInSaga from "./SignInSaga";
 
 export function* rootSaga() {
-  yield all([UserJiraSaga.followSignin()]);
+  console.log("Redux-Saga has been succesfully connected");
+  yield all([SignInSaga.followSignin()]);
 }
