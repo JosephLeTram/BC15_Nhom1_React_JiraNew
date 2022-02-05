@@ -1,3 +1,7 @@
+# Updates
+
+The updates will be done on google docs & spreadsheets. Eventually, the updates and progress will be transferred to this README doc.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
