@@ -23,12 +23,12 @@ function* signin(action) {
   console.log("log action", action);
   console.log("Hiện loading");
 
-  yield delay(500);
-  //Create loading action
+  // Create loading action
   yield put({
     type: DISPLAY_LOADING,
   });
 
+  yield delay(1000);
   console.log("Try calling API");
 
   try {

@@ -1,11 +1,12 @@
 import "./App.css";
-import { BrowserRouter, Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import Login from "./pages/Login";
 import Homepage from "./pages/Homepage";
 import Dashboard from "./pages/Dashboard";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ADD_HISTORY } from "./redux/constants/CyberJiraNew";
+import LoadingComponent from "./GlobalSetting/LoadingComponent/LoadingComponent";
 
 function App() {
   const history = useHistory();
@@ -19,6 +20,7 @@ function App() {
   }, []);
   return (
     <>
+      <LoadingComponent />
       <Switch>
         <div className="App">
           <Route exact path="/" component={Homepage} />
