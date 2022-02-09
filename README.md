@@ -1,3 +1,5 @@
+require(): to make sure the React package and adjust the relative path for assets folder
+
 # Updates
 
 The updates will be done on google docs & spreadsheets. Eventually, the updates and progress will be transferred to this README doc.
