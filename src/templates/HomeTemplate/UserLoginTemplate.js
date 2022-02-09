@@ -35,6 +35,7 @@ export const UserLoginTemplate = (props) => {
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "100%",
                   backgroundPosition: "center",
+                  backgroundColor: "white",
                 }}
               ></Sider>
               <Content>

@@ -8,6 +8,8 @@ import { ADD_HISTORY } from "./redux/constants/CyberJiraNew";
 import LoadingComponent from "./GlobalSetting/LoadingComponent/LoadingComponent";
 import { JiraNewTemplate } from "./templates/Dashboard Template/JiraNewTemplate";
 import CreateProject from "./pages/CreateProject/CreateProject";
+import { UserLoginTemplate } from "./templates/HomeTemplate/UserLoginTemplate";
+import Register from "./pages/Register";
 
 function App() {
   const history = useHistory();
@@ -24,7 +26,8 @@ function App() {
       <LoadingComponent />
       <Switch>
         <Route exact path="/" component={Homepage} />
-        <Route exact path="/login" component={Login} />
+        <UserLoginTemplate exact path="/login" Component={Login} />
+        <UserLoginTemplate exact path="/register" Component={Register} />
         <JiraNewTemplate exact path="/dashboard" Component={JiraDashboard} />
         <JiraNewTemplate
           exact

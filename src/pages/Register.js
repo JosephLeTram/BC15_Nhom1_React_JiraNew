@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import { connect } from "react-redux";
 import { signin_action } from "../redux/actions/JiraNewAction";
 
-function Login(props) {
+function Register(props) {
   const { errors, handleChange, handleSubmit } = props;
   return (
     <div>
@@ -22,7 +22,7 @@ function Login(props) {
             style={{ height: window.innerHeight }}
           >
             <h3 className="text-center display-4 font-weight-bold">
-              CyberSoft Jira Login
+              CyberSoft Jira Register
             </h3>
             <div className="mt-3">
               <Input
@@ -60,7 +60,7 @@ function Login(props) {
               size="large"
               style={{ width: "35%" }}
             >
-              Log in
+              Register
             </Button>
 
             <div className="social mt-4">
@@ -108,6 +108,6 @@ const LoginWithFormik = withFormik({
   },
 
   displayName: "CyberSoft Jira Login",
-})(Login);
+})(Register);
 
 export default connect()(LoginWithFormik);
