@@ -26,9 +26,9 @@ function* createProjectSaga(action) {
       // Connect to store and change state
       let history = yield select((state) => state.HistoryReducer.history);
 
-      alert("Đang chuyển về dashboard !");
+      alert("Đang chuyển về Project Management Page !");
       //Chage web link directory
-      history.push("/dashboard");
+      history.push("/projectmanagement");
     }
   } catch (err) {
     console.log(err);

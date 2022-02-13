@@ -38,4 +38,16 @@ export const jiraNewService = {
       data: newProject,
     });
   },
+
+  // Get all project list
+  getProjectList: () => {
+    return Axios({
+      url: `${DOMAIN}/Project/getAllProject`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
 };
