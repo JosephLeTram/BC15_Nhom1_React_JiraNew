@@ -4,7 +4,7 @@ import Homepage from "./pages/Homepage";
 import JiraDashboard from "./pages/JiraDashboard";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { ADD_HISTORY } from "./redux/constants/CyberJiraNew";
+import { ADD_HISTORY } from "./redux/constants/JiraNewConstants";
 import LoadingComponent from "./GlobalSetting/LoadingComponent/LoadingComponent";
 import { JiraNewTemplate } from "./templates/Dashboard Template/JiraNewTemplate";
 import CreateProject from "./pages/CreateProject/CreateProject";

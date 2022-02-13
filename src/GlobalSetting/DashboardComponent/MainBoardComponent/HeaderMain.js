@@ -7,7 +7,10 @@ export default function HeaderMain() {
         <ol className="breadcrumb" style={{ backgroundColor: "white" }}>
           <li className="breadcrumb-item">Project</li>
           <li className="breadcrumb-item">CyberLearn</li>
-          <li className="breadcrumb-item active" aria-current="page">
+          <li
+            className="breadcrumb-item active font-weight-bold"
+            aria-current="page"
+          >
             Cyber Board
           </li>
         </ol>

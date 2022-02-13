@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tinymce/tinymce-react": "^3.13.0",
     "antd": "^4.18.2",
     "axios": "^0.25.0",
     "cra-template": "1.1.3",

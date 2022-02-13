@@ -1,0 +1,17 @@
+// Loading Screen
+export const DISPLAY_LOADING = "DISPLAY_LOADING";
+export const HIDE_LOADING = "HIDE_LOADING";
+export const ADD_HISTORY = "ADD_HISTORY";
+
+// User Login
+export const USER_LOG_IN = "USER_LOG_IN";
+export const USER_SIGNIN_API = "USER_SIGNIN_API";
+
+// PROJECT
+// Project Category
+export const GET_ALL_PROJECT_CATEGORY_SAGA = "GET_ALL_PROJECT_CATEGORY_SAGA";
+export const GET_ALL_PROJECT_CATEGORY_REDUCER =
+  "GET_ALL_PROJECT_CATEGORY_REDUCER";
+
+// Create Project
+export const CREATE_PROJECT_SAGA = "CREATE_PROJECT_SAGA";

@@ -1,4 +1,4 @@
-import { DISPLAY_LOADING, HIDE_LOADING } from "../constants/CyberJiraNew";
+import { DISPLAY_LOADING, HIDE_LOADING } from "../constants/JiraNewConstants";
 
 const initialState = {
   isLoading: false,

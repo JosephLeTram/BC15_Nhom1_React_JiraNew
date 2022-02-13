@@ -9,37 +9,32 @@ import {
   cancelled,
   select,
 } from "redux-saga/effects";
-import { TOKEN, USER_LOGIN } from "../../GlobalSetting/domain";
+import { TOKEN_AUTHORIZATION, USER_LOGIN } from "../../GlobalSetting/domain";
 import {
   DISPLAY_LOADING,
   HIDE_LOADING,
   USER_LOG_IN,
   USER_SIGNIN_API,
-} from "../constants/CyberJiraNew";
+} from "../constants/JiraNewConstants";
 import { jiraNewService } from "../services/JiraNewService";
 
 // quản lý các actions
 function* signin(action) {
-  console.log("log action", action);
-  console.log("Hiện loading");
-
   // Create loading action
   yield put({
     type: DISPLAY_LOADING,
   });
 
   yield delay(1000);
-  console.log("Try calling API");
 
   try {
     // gọi API
     const { data } = yield call(() =>
       jiraNewService.jiraSignin(action.userLogin)
     );
-    console.log(data);
 
     // add to localstorage when succesfully signed in
-    localStorage.setItem(TOKEN, data.content.accessToken);
+    localStorage.setItem(TOKEN_AUTHORIZATION, data.content.accessToken);
     localStorage.setItem(USER_LOGIN, JSON.stringify(data.content));
 
     yield put({ type: USER_LOG_IN, userLogin: data.content });
@@ -53,7 +48,7 @@ function* signin(action) {
     history.push("/dashboard");
   } catch (err) {
     //if data failed to retrieve
-    console.log(err.response.data);
+
     alert(err.response.data.message); // drop down alert to notify users
   }
 

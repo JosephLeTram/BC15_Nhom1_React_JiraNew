@@ -1,4 +1,4 @@
-import { USER_SIGNIN_API } from "../constants/CyberJiraNew";
+import { USER_SIGNIN_API } from "../constants/JiraNewConstants";
 
 export const signin_action = (email, password) => {
   return {

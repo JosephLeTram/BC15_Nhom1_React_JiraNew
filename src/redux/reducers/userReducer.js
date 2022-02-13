@@ -1,5 +1,5 @@
 import { USER_LOGIN } from "../../GlobalSetting/domain";
-import { USER_LOG_IN } from "../constants/CyberJiraNew";
+import { USER_LOG_IN } from "../constants/JiraNewConstants";
 let usLogin = {};
 
 if (localStorage.getItem(USER_LOGIN)) {
