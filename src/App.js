@@ -10,6 +10,7 @@ import { JiraNewTemplate } from "./templates/Dashboard Template/JiraNewTemplate"
 import CreateProject from "./pages/CreateProject/CreateProject";
 import { UserLoginTemplate } from "./templates/HomeTemplate/UserLoginTemplate";
 import Register from "./pages/Register";
+import ProjectManagement from "./pages/ProjectManagement/ProjectManagement";
 
 function App() {
   const history = useHistory();
@@ -33,6 +34,11 @@ function App() {
           exact
           path="/createproject"
           Component={CreateProject}
+        />
+        <JiraNewTemplate
+          exact
+          path="/projectmanagement"
+          Component={ProjectManagement}
         />
       </Switch>
     </>

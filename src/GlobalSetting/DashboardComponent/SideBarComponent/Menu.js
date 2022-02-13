@@ -31,6 +31,16 @@ export default function Menu() {
           <i className="fa fa-cog mr-3" />
           <NavLink
             className="text-dark"
+            to="/projectmanagement"
+            activeClassName="active font-weight-bold"
+          >
+            Project Management
+          </NavLink>
+        </div>
+        <div>
+          <i className="fa fa-cog mr-3" />
+          <NavLink
+            className="text-dark"
             to="/createproject"
             activeClassName="active font-weight-bold"
           >
