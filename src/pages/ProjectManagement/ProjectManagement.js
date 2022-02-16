@@ -3,7 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { Table, Button, Space, Tag } from "antd";
 import ReactHtmlParser from "react-html-parser";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { GET_PROJECT_LIST_SAGA } from "../../redux/constants/JiraNewConstants";
+import {
+  EDIT_PROJECT_SAGA,
+  GET_PROJECT_LIST_SAGA,
+  OPEN_FORM_EDIT_PROJECT,
+} from "../../redux/constants/JiraNewConstants";
+import FormEditProject from "./FormEditProject";
 
 export default function ProjectManagement(props) {
   //retrieve Project List data from Reducer to Component
@@ -130,13 +135,32 @@ export default function ProjectManagement(props) {
       title: "Action",
       key: "action",
       render: (text, record) => (
-        <Space size="middle">
-          <a href="#">
-            <EditOutlined className="bg-primary text-white" />
-          </a>
-          <a href="#">
-            <DeleteOutlined className="bg-danger text-white" />
-          </a>
+        <Space size="large">
+          <button className="btn btn-primary  mr-1 text-white">
+            <EditOutlined
+              style={{ fontSize: 16 }}
+              onClick={() => {
+                const action = {
+                  type: OPEN_FORM_EDIT_PROJECT,
+                  Component: <FormEditProject />,
+                };
+
+                // dispatch to drawer reducer
+                dispatch(action);
+
+                // dispatch current data to Reducer
+                const editProjectAction = {
+                  type: EDIT_PROJECT_SAGA,
+                  projectEditModel: record,
+                };
+
+                dispatch(editProjectAction);
+              }}
+            />
+          </button>
+          <button className="btn btn-danger text-white">
+            <DeleteOutlined style={{ fontSize: 16 }} />
+          </button>
         </Space>
       ),
     },

@@ -50,4 +50,17 @@ export const jiraNewService = {
       },
     });
   },
+
+  // Update Project
+  updateProject: (projectUpdated) => {
+    return Axios({
+      url: `${DOMAIN}/Project/updateProject?projectId=${projectUpdated.id}`,
+      method: "PUT",
+      data: projectUpdated,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
 };

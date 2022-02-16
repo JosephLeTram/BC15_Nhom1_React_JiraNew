@@ -11,6 +11,7 @@ import CreateProject from "./pages/CreateProject/CreateProject";
 import { UserLoginTemplate } from "./templates/HomeTemplate/UserLoginTemplate";
 import Register from "./pages/Register";
 import ProjectManagement from "./pages/ProjectManagement/ProjectManagement";
+import ModalTemplate from "./templates/Modal Template/ModalTemplate";
 
 function App() {
   const history = useHistory();
@@ -25,6 +26,7 @@ function App() {
   return (
     <>
       <LoadingComponent />
+      <ModalTemplate />
       <Switch>
         <Route exact path="/" component={Homepage} />
         <UserLoginTemplate exact path="/login" Component={Login} />
