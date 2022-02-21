@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   Table,
@@ -37,6 +37,10 @@ export default function ProjectManagement(props) {
 
   // useDispatch call API
   const dispatch = useDispatch();
+
+  // useRef
+
+  const searchRef = useRef(null);
 
   // useEffect
   useEffect(() => {
@@ -200,10 +204,15 @@ export default function ProjectManagement(props) {
                       };
                     })}
                     onSearch={(value) => {
-                      dispatch({
-                        type: SEARCH_USER_SAGA,
-                        keyWord: value,
-                      });
+                      if (searchRef.current) {
+                        clearTimeout(searchRef.current);
+                      }
+                      searchRef.current = setTimeout(() => {
+                        dispatch({
+                          type: SEARCH_USER_SAGA,
+                          keyWord: value,
+                        });
+                      }, 300);
                     }}
                     onSelect={(valueSelect, option) => {
                       //Set value in the box = option.label
