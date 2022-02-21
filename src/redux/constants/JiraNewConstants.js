@@ -28,3 +28,9 @@ export const OPEN_FORM_EDIT_PROJECT = "OPEN_FORM_EDIT_PROJECT";
 // Edit Project
 export const SET_SUBMIT_EDIT_PROJECT = "SET_SUBMIT_EDIT_PROJECT";
 export const EDIT_PROJECT_SAGA = "EDIT_PROJECT_SAGA";
+
+// Delete Project
+export const DELETE_PROJECT_SAGA = "DELETE_PROJECT_SAGA";
+
+// Tooltip
+export const SHOW_NOTIFICATION = "SHOW_NOTIFICATION";

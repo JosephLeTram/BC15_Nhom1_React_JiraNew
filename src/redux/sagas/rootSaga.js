@@ -4,6 +4,7 @@ import * as ProjectCategorySaga from "./ProjectCategorySaga";
 import * as CreateProjectSaga from "./CreateProjectSaga";
 import * as ProjectListSaga from "./ProjectListSaga";
 import * as ProjectUpdateSaga from "./ProjectUpdateSaga";
+import * as ProjectDeleteSaga from "./ProjectDeleteSaga";
 
 export function* rootSaga() {
   yield all([
@@ -12,5 +13,6 @@ export function* rootSaga() {
     CreateProjectSaga.followCreateProjectSaga(),
     ProjectListSaga.followGetProjectListSaga(),
     ProjectUpdateSaga.followUpdateProjectSaga(),
+    ProjectDeleteSaga.followDeleteProjectSaga(),
   ]);
 }

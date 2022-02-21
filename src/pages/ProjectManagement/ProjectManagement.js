@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Table, Button, Space, Tag } from "antd";
 import ReactHtmlParser from "react-html-parser";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Popconfirm, message } from "antd";
 import {
+  DELETE_PROJECT_SAGA,
   EDIT_PROJECT_SAGA,
   GET_PROJECT_LIST_SAGA,
   OPEN_FORM_EDIT_PROJECT,
@@ -136,31 +138,40 @@ export default function ProjectManagement(props) {
       key: "action",
       render: (text, record) => (
         <Space size="large">
-          <button className="btn btn-primary  mr-1 text-white">
-            <EditOutlined
-              style={{ fontSize: 16 }}
-              onClick={() => {
-                const action = {
-                  type: OPEN_FORM_EDIT_PROJECT,
-                  Component: <FormEditProject />,
-                };
+          <button
+            className="btn btn-primary  mr-1 text-white"
+            onClick={() => {
+              const action = {
+                type: OPEN_FORM_EDIT_PROJECT,
+                Component: <FormEditProject />,
+              };
 
-                // dispatch to drawer reducer
-                dispatch(action);
+              // dispatch to drawer reducer
+              dispatch(action);
 
-                // dispatch current data to Reducer
-                const editProjectAction = {
-                  type: EDIT_PROJECT_SAGA,
-                  projectEditModel: record,
-                };
+              // dispatch current data to Reducer
+              const editProjectAction = {
+                type: EDIT_PROJECT_SAGA,
+                projectEditModel: record,
+              };
 
-                dispatch(editProjectAction);
-              }}
-            />
+              dispatch(editProjectAction);
+            }}
+          >
+            <EditOutlined style={{ fontSize: 16 }} />
           </button>
-          <button className="btn btn-danger text-white">
-            <DeleteOutlined style={{ fontSize: 16 }} />
-          </button>
+          <Popconfirm
+            title="Are you sure to delete this project?"
+            onConfirm={() => {
+              dispatch({ type: DELETE_PROJECT_SAGA, idProject: record });
+            }}
+            okText="Yes"
+            cancelText="No"
+          >
+            <button className="btn btn-danger text-white">
+              <DeleteOutlined style={{ fontSize: 16 }} />
+            </button>
+          </Popconfirm>
         </Space>
       ),
     },

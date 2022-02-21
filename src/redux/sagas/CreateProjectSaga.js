@@ -7,9 +7,9 @@ import {
   DISPLAY_LOADING,
   HIDE_LOADING,
 } from "../constants/JiraNewConstants";
+import { notificationFunction } from "../../util/Notification/notificationJira";
 
 function* createProjectSaga(action) {
-  console.log("action Create Project", action);
   // Show Loading Screen
   yield put({
     type: DISPLAY_LOADING,
@@ -21,7 +21,11 @@ function* createProjectSaga(action) {
     );
     // Check status before dispatch to Store
     if (status === STATUS_CODE.SUCCESS) {
-      alert("Bạn đã tạo Project mới thành công !");
+      notificationFunction(
+        "success",
+        `Project ${action.newProject.projectName}`,
+        "Project is succesfully created"
+      );
 
       // Connect to store and change state
       let history = yield select((state) => state.HistoryReducer.history);
@@ -32,6 +36,11 @@ function* createProjectSaga(action) {
     }
   } catch (err) {
     console.log(err);
+    notificationFunction(
+      "error",
+      `Project ${action.newProject.projectName}`,
+      "Project fails to create"
+    );
   }
 
   yield put({

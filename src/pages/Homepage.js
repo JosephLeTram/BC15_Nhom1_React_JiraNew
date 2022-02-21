@@ -13,9 +13,10 @@ export default function Homepage() {
   return (
     <div className="container">
       <h3>This is Home Page</h3>
-      <button className="btn btn-success" onClick={goToSignIn}>
+      <button className="btn btn-success my-3" onClick={goToSignIn}>
         Sign-In
       </button>
+      <br />
     </div>
   );
 }

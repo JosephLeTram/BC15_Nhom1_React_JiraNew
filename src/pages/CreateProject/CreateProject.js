@@ -122,7 +122,6 @@ const CreateProjectWithFormik = withFormik({
   validationSchema: Yup.object().shape({}),
 
   handleSubmit: (values, { props, setSubmitting }) => {
-    console.log("handdleSubmit Values", values);
     props.dispatch({
       type: CREATE_PROJECT_SAGA,
       newProject: values,

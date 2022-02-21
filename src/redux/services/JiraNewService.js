@@ -63,4 +63,17 @@ export const jiraNewService = {
       },
     });
   },
+
+  // Delete Project
+  deleteProject: (projectDeleted) => {
+    return Axios({
+      url: `${DOMAIN}/Project/deleteProject?projectId=${projectDeleted.id}`,
+      method: "DELETE",
+      data: projectDeleted,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
 };
