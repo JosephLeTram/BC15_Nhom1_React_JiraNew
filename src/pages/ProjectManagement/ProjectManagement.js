@@ -19,6 +19,7 @@ import {
   EDIT_PROJECT_SAGA,
   GET_PROJECT_LIST_SAGA,
   OPEN_FORM_EDIT_PROJECT,
+  REMOVE_USER_FROM_PROJECT_SAGA,
   SEARCH_USER_SAGA,
 } from "../../redux/constants/JiraNewConstants";
 import FormEditProject from "./FormEditProject";
@@ -122,7 +123,64 @@ export default function ProjectManagement(props) {
         return (
           <div>
             {record.members?.slice(0, 3).map((member, index) => {
-              return <Avatar key={index} src={member.avatar} />;
+              return (
+                <Popover
+                  placement="bottom"
+                  title={"Member"}
+                  content={() => {
+                    return (
+                      <table className="table ">
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>Avatar</th>
+                            <th>Name</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {record.members?.map((member, index) => {
+                            return (
+                              <tr key={index}>
+                                <td>{member.userId}</td>
+                                <td>
+                                  <img
+                                    src={member.avatar}
+                                    width={35}
+                                    height={35}
+                                    alt=""
+                                    style={{ borderRadius: "15px" }}
+                                  />
+                                </td>
+                                <td>{member.name}</td>
+                                <td>
+                                  <button
+                                    className="btn btn-danger"
+                                    style={{ borderRadius: "50%" }}
+                                    onClick={() => {
+                                      dispatch({
+                                        type: REMOVE_USER_FROM_PROJECT_SAGA,
+                                        userProject: {
+                                          userId: member.userId,
+                                          projectId: record.id,
+                                        },
+                                      });
+                                    }}
+                                  >
+                                    <DeleteOutlined />
+                                  </button>
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    );
+                  }}
+                >
+                  <Avatar key={index} src={member.avatar} />
+                </Popover>
+              );
             })}
             {record.members?.length > 3 ? <Avatar>...</Avatar> : ""}
             <Popover

@@ -7,6 +7,7 @@ import * as ProjectUpdateSaga from "./ProjectUpdateSaga";
 import * as ProjectDeleteSaga from "./ProjectDeleteSaga";
 import * as SearchUserSaga from "./SearchUserSaga";
 import * as AssignUserToProjectSaga from "./AssignUserToProjectSaga";
+import * as RemoveUserFromProjectSaga from "./RemoveUserFromProjectSaga";
 
 export function* rootSaga() {
   yield all([
@@ -18,5 +19,6 @@ export function* rootSaga() {
     ProjectDeleteSaga.followDeleteProjectSaga(),
     SearchUserSaga.followSearchUserSaga(),
     AssignUserToProjectSaga.followAssignUserToProjectSaga(),
+    RemoveUserFromProjectSaga.followRemoveUserFromProjectSaga(),
   ]);
 }

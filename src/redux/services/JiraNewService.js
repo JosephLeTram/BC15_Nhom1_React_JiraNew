@@ -101,4 +101,17 @@ export const jiraNewService = {
       },
     });
   },
+
+  // Remove User from Project
+  removeUserFromProject: (userProject) => {
+    return Axios({
+      url: `${DOMAIN}/Project/removeUserFromProject`,
+      method: "POST",
+      data: userProject,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
 };
