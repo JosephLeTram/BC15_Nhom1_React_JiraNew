@@ -14,9 +14,6 @@ function* assignUserToProjectSaga(action) {
       jiraNewService.assignUserToProject(action.userProject)
     );
     if (status === STATUS_CODE.SUCCESS) {
-      console.log("data", data);
-      console.log("action", action);
-      console.log("action user project ", action.userProject);
       notificationFunction(
         "success",
         `Project ${action.userProject.projectId}`,
