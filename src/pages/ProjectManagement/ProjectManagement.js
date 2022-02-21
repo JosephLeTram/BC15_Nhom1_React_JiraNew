@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Table, Button, Space, Tag } from "antd";
+import {
+  Table,
+  Button,
+  Space,
+  Tag,
+  Avatar,
+  Popover,
+  AutoComplete,
+  Input,
+} from "antd";
 import ReactHtmlParser from "react-html-parser";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Popconfirm, message } from "antd";
 import {
+  ASSIGN_USER_TO_PROJECT_SAGA,
   DELETE_PROJECT_SAGA,
   EDIT_PROJECT_SAGA,
   GET_PROJECT_LIST_SAGA,
   OPEN_FORM_EDIT_PROJECT,
+  SEARCH_USER_SAGA,
 } from "../../redux/constants/JiraNewConstants";
 import FormEditProject from "./FormEditProject";
 
@@ -17,6 +28,11 @@ export default function ProjectManagement(props) {
   const projectList = useSelector(
     (state) => state.ProjectListReducer.projectList
   );
+
+  // retrieve User Login Data from Reducer to Component
+  const userSearch = useSelector((state) => state.SearchUserReducer.userSearch);
+
+  const [value, setValue] = useState("");
 
   // useDispatch call API
   const dispatch = useDispatch();
@@ -98,6 +114,66 @@ export default function ProjectManagement(props) {
       },
       sortOrder: sortedInfo.columnKey === "creator" && sortedInfo.order,
       ellipsis: true,
+    },
+    {
+      title: "Members",
+      key: "members",
+      render: (text, record, index) => {
+        return (
+          <div>
+            {record.members?.slice(0, 3).map((member, index) => {
+              return <Avatar key={index} src={member.avatar} />;
+            })}
+            {record.members?.length > 3 ? <Avatar>...</Avatar> : ""}
+            <Popover
+              placement="right"
+              title={"Add User"}
+              content={() => {
+                return (
+                  <AutoComplete
+                    dropdownClassName="certain-category-search-dropdown"
+                    dropdownMatchSelectWidth={500}
+                    style={{ width: 250 }}
+                    value={value}
+                    options={userSearch?.map((user, index) => {
+                      return {
+                        label: user.name,
+                        value: user.userId.toString(),
+                      };
+                    })}
+                    onSearch={(value) => {
+                      dispatch({
+                        type: SEARCH_USER_SAGA,
+                        keyWord: value,
+                      });
+                    }}
+                    onSelect={(valueSelect, option) => {
+                      //Set value in the box = option.label
+                      setValue(option.label);
+                      // Call API and send data to backend
+                      dispatch({
+                        type: ASSIGN_USER_TO_PROJECT_SAGA,
+                        userProject: {
+                          projectId: record.id,
+                          userId: valueSelect,
+                        },
+                      });
+                    }}
+                    onChange={(text) => {
+                      setValue(text);
+                    }}
+                  >
+                    <Input.Search size="large" placeholder="Member's name" />
+                  </AutoComplete>
+                );
+              }}
+              trigger="click"
+            >
+              <Button style={{ borderRadius: "50%" }}>+</Button>
+            </Popover>
+          </div>
+        );
+      },
     },
     {
       title: "Project Name",

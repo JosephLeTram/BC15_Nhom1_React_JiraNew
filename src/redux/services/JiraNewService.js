@@ -76,4 +76,29 @@ export const jiraNewService = {
       },
     });
   },
+
+  //Search User
+  searchUser: (keyWord) => {
+    return Axios({
+      url: `${DOMAIN}/Users/getUser?keyword=${keyWord}`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
+  // Assign User to Project
+  assignUserToProject: (userProject) => {
+    return Axios({
+      url: `${DOMAIN}/Project/assignUserProject`,
+      method: "POST",
+      data: userProject,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
 };

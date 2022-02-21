@@ -7,6 +7,7 @@ import { ProjectCategoryReducer } from "./ProjectCategoryReducer";
 import { ProjectListReducer } from "./ProjectListReducer";
 import { ModalEditReducer } from "./ModalEditReducer";
 import { ProjectEditReducer } from "./ProjectEditReducer";
+import { SearchUserReducer } from "./SearchUserReducer";
 const rootReducer = combineReducers({
   signInReducer,
   HistoryReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   ProjectListReducer,
   ModalEditReducer,
   ProjectEditReducer,
+  SearchUserReducer,
 });
 
 export default rootReducer;
