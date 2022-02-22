@@ -11,6 +11,7 @@ const stateDefault = {
   callBackSubmit: () => {
     alert("Submit Values");
   },
+  title: "",
 };
 
 export const ModalEditReducer = (state = stateDefault, action) => {
@@ -24,6 +25,7 @@ export const ModalEditReducer = (state = stateDefault, action) => {
         ...state,
         visible: true,
         ComponentContentDrawer: action.Component,
+        title: action.title,
       };
 
     case SET_SUBMIT_EDIT_PROJECT:

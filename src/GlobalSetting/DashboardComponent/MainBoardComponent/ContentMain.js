@@ -1,8 +1,6 @@
 import React from "react";
 
 export default function ContentMain(props) {
-  console.log(props);
-
   const renderCardTaskList = () => {
     return props.projectDetail.lstTask?.map((taskListDetail, index) => {
       return (
