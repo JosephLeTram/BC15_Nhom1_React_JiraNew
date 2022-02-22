@@ -114,4 +114,16 @@ export const jiraNewService = {
       },
     });
   },
+
+  // Get Project Detail
+  getProjectDetail: (projectId) => {
+    return Axios({
+      url: `${DOMAIN}/Project/getProjectDetail?id=${projectId}`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
 };

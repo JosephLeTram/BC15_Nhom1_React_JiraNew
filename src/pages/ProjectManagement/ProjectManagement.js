@@ -23,6 +23,7 @@ import {
   SEARCH_USER_SAGA,
 } from "../../redux/constants/JiraNewConstants";
 import FormEditProject from "./FormEditProject";
+import { NavLink } from "react-router-dom";
 
 export default function ProjectManagement(props) {
   //retrieve Project List data from Reducer to Component
@@ -246,6 +247,9 @@ export default function ProjectManagement(props) {
       title: "Project Name",
       dataIndex: "projectName",
       key: "projectName",
+      render: (text, record, index) => {
+        return <NavLink to={`/projectdetail/${record.id}`}>{text}</NavLink>;
+      },
       sorter: (a, b) => a.projectName.length - b.projectName.length,
       sortOrder: sortedInfo.columnKey === "projectName" && sortedInfo.order,
       ellipsis: true,

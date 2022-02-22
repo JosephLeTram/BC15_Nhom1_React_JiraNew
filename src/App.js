@@ -42,6 +42,11 @@ function App() {
           path="/projectmanagement"
           Component={ProjectManagement}
         />
+        <JiraNewTemplate
+          exact
+          path="/projectdetail/:projectId"
+          Component={JiraDashboard}
+        />
       </Switch>
     </>
   );

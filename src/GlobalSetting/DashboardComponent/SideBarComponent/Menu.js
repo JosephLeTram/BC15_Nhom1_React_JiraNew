@@ -24,7 +24,7 @@ export default function Menu() {
             to="/dashboard"
             activeClassName="active font-weight-bold"
           >
-            Cyber Board
+            Project Board
           </NavLink>
         </div>
         <div>
