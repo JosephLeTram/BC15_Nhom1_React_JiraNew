@@ -6,7 +6,7 @@ if (localStorage.getItem(USER_LOGIN)) {
   usLogin = JSON.parse(localStorage.getItem(USER_LOGIN));
 }
 
-const stateDefault = { userLogin: usLogin };
+const stateDefault = { userLogin: usLogin, arrUser: [] };
 
 export const UserReducer = (state = stateDefault, action) => {
   switch (action.type) {

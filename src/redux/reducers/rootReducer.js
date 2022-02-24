@@ -8,6 +8,10 @@ import { ProjectListReducer } from "./ProjectListReducer";
 import { ModalEditReducer } from "./ModalEditReducer";
 import { ProjectEditReducer } from "./ProjectEditReducer";
 import { SearchUserReducer } from "./SearchUserReducer";
+import { SearchUserReducerByProjectId } from "./SearchUserByProjectIdReducer";
+import { TaskTypeReducer } from "./TaskTypeReducer";
+import { PriorityTypeReducer } from "./PriorityTypeReducer";
+import { StatusReducer } from "./StatusReducer";
 const rootReducer = combineReducers({
   signInReducer,
   HistoryReducer,
@@ -18,6 +22,10 @@ const rootReducer = combineReducers({
   ModalEditReducer,
   ProjectEditReducer,
   SearchUserReducer,
+  TaskTypeReducer,
+  PriorityTypeReducer,
+  StatusReducer,
+  SearchUserReducerByProjectId,
 });
 
 export default rootReducer;

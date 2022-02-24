@@ -39,7 +39,7 @@ export const jiraNewService = {
     });
   },
 
-  // Get all project list
+  // Get a list of all projects
   getProjectList: () => {
     return Axios({
       url: `${DOMAIN}/Project/getAllProject`,
@@ -88,6 +88,29 @@ export const jiraNewService = {
       },
     });
   },
+  //Search User By Project ID
+  searchUserByProjectId: (projectId) => {
+    return Axios({
+      url: `${DOMAIN}/Users/getUserByProjectId?idProject=${projectId}`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
+  // Get All User
+  getAllUser: () => {
+    return Axios({
+      url: `${DOMAIN}/Users/getUser`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
 
   // Assign User to Project
   assignUserToProject: (userProject) => {
@@ -119,6 +142,54 @@ export const jiraNewService = {
   getProjectDetail: (projectId) => {
     return Axios({
       url: `${DOMAIN}/Project/getProjectDetail?id=${projectId}`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
+  // Get All Task Type
+  getAllTaskType: () => {
+    return Axios({
+      url: `${DOMAIN}/TaskType/getAll`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+  // Get All Prority Type
+  getAllPriorityType: () => {
+    return Axios({
+      url: `${DOMAIN}/Priority/getAll`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
+  //Create Task
+  createTask: (taskObject) => {
+    return Axios({
+      url: `${DOMAIN}/Project/createTask`,
+      method: "POST",
+      data: taskObject,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
+  // Status ID Service
+  getAllStatusType: () => {
+    return Axios({
+      url: `${DOMAIN}/Status/getAll`,
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),

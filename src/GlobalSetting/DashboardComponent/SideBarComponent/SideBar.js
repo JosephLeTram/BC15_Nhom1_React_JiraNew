@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Layout, Menu } from "antd";
-
+import { useDispatch, useSelector } from "react-redux";
 import {
   UserOutlined,
   BarsOutlined,
   PlusOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
+import { OPEN_FORM_CREATE_TASK } from "../../../redux/constants/JiraNewConstants";
+import FormCreateTask from "../../../pages/ProjectManagement/FormCreateTask";
 
 const { Header, Sider, Content } = Layout;
 
@@ -14,7 +16,7 @@ export default function SideBar() {
   const [state, setState] = useState({
     collapsed: false,
   });
-
+  const dispatch = useDispatch();
   const toggle = () => {
     setState({
       collapsed: !state.collapsed,
@@ -42,8 +44,18 @@ export default function SideBar() {
           <Menu.Item key="1" icon={<SearchOutlined />}>
             Search Issues
           </Menu.Item>
-          <Menu.Item key="2" icon={<PlusOutlined />}>
-            Create Issue
+          <Menu.Item
+            key="2"
+            icon={<PlusOutlined />}
+            onClick={() => {
+              dispatch({
+                type: OPEN_FORM_CREATE_TASK,
+                Component: <FormCreateTask />,
+                title: "Create Task",
+              });
+            }}
+          >
+            Create Task
           </Menu.Item>
         </Menu>
       </Sider>

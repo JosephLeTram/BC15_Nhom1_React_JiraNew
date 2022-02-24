@@ -22,7 +22,6 @@ function* updateProjectSaga(action) {
     );
     // Check status before dispatch to Store
     if (status === STATUS_CODE.SUCCESS) {
-      console.log(data);
       alert("Bạn đã Update Project thành công !");
       // Refresh brower
       yield put({
