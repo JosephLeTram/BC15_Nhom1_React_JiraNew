@@ -1,18 +1,12 @@
 import { call, takeLatest, put, select } from "redux-saga/effects";
 import {
-  DISPLAY_LOADING,
   GET_PROJECT_DETAIL_REDUCER,
   GET_PROJECT_DETAIL_SAGA,
-  HIDE_LOADING,
 } from "../constants/JiraNewConstants";
 import { jiraNewService } from "../services/JiraNewService";
 import { STATUS_CODE } from "../../GlobalSetting/domain";
 
 function* getProjectDetailSaga(action) {
-  // Show loading
-  yield put({
-    type: DISPLAY_LOADING,
-  });
   try {
     const { data, status } = yield call(() =>
       jiraNewService.getProjectDetail(action.projectId)
@@ -34,11 +28,6 @@ function* getProjectDetailSaga(action) {
     //Chage web link directory
     history.push("/projectmanagement");
   }
-
-  //   Hide Loading
-  yield put({
-    type: HIDE_LOADING,
-  });
 }
 
 export function* followGetProjectDetailSaga() {

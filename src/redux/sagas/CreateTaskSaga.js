@@ -23,15 +23,15 @@ function* createTaskSaga(action) {
     console.log("task Object", action.taskObject);
     // Check status before dispatch to Store
     if (status === STATUS_CODE.SUCCESS) {
+      yield put({
+        type: CLOSE_DRAWER,
+      });
       notificationFunction(
         "success",
         `Task ${action.taskObject.taskName}`,
         "A task has been succesfully created"
       );
-
-      yield put({
-        type: CLOSE_DRAWER,
-      });
+      yield delay(2000);
     }
   } catch (err) {
     console.log(err);

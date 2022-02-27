@@ -186,6 +186,31 @@ export const jiraNewService = {
     });
   },
 
+  // Get Task Detail
+  getTaskDetail: (taskId) => {
+    return Axios({
+      url: `${DOMAIN}/Project/getTaskDetail?taskId=${taskId}`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
+  //update Task
+  updateTask: (taskUpdate) => {
+    return Axios({
+      url: `${DOMAIN}/Project/updateTask`,
+      method: "POST",
+      data: taskUpdate,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
   // Status ID Service
   getAllStatusType: () => {
     return Axios({

@@ -101,10 +101,8 @@ function FormCreateTask(props) {
           onChange={(e) => {
             // Update value for project Id when select
             setFieldValue("projectId", e.target.value);
-            console.log("project onChange values", e.target.value);
             //dispatch updated value
             let { value } = e.target;
-            console.log(value);
             dispatch({
               type: SEARCH_USER_BY_PROJECT_ID_SAGA,
               projectId: value,
