@@ -16,6 +16,7 @@ import * as CreateTaskSaga from "./CreateTaskSaga";
 import * as StatusTypeSaga from "./StatusTypeSaga";
 import * as TaskDetailSaga from "./TaskDetailSaga";
 import * as TaskUpdateSaga from "./TaskUpdateSaga";
+import * as TaskStatusUpdateSaga from "./TaskStatusUpdateSaga";
 
 export function* rootSaga() {
   yield all([
@@ -36,5 +37,6 @@ export function* rootSaga() {
     StatusTypeSaga.followGetAllStatusType(),
     TaskDetailSaga.followGetTaskDetailSaga(),
     TaskUpdateSaga.followHandleChangePostApi(),
+    TaskStatusUpdateSaga.followUpdateTaskStatus(),
   ]);
 }

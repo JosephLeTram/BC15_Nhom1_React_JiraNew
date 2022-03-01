@@ -13,6 +13,7 @@
     "formik": "^2.2.9",
     "history": "^5.2.0",
     "react": "^16.0.0-0",
+    "react-beautiful-dnd": "^13.1.0",
     "react-dom": "^16.0.0-0",
     "react-html-parser": "^2.0.2",
     "react-redux": "^7.2.6",

@@ -211,6 +211,19 @@ export const jiraNewService = {
     });
   },
 
+  //update Task Status:
+  updateTaskStatus: (taskUpdateModel) => {
+    return Axios({
+      url: `${DOMAIN}/Project/updateStatus`,
+      method: "PUT",
+      data: taskUpdateModel,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
   // Status ID Service
   getAllStatusType: () => {
     return Axios({
