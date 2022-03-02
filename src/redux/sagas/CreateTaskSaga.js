@@ -6,6 +6,7 @@ import {
   CLOSE_DRAWER,
   CREATE_TASK_SAGA,
   DISPLAY_LOADING,
+  GET_PROJECT_DETAIL_SAGA,
   HIDE_LOADING,
 } from "../constants/JiraNewConstants";
 import { notificationFunction } from "../../util/Notification/notificationJira";
@@ -26,12 +27,16 @@ function* createTaskSaga(action) {
       yield put({
         type: CLOSE_DRAWER,
       });
+      yield put({
+        type: GET_PROJECT_DETAIL_SAGA,
+        projectId: action.taskObject.projectId,
+      });
       notificationFunction(
         "success",
         `Task ${action.taskObject.taskName}`,
         "A task has been succesfully created"
       );
-      yield delay(2000);
+      yield delay(1000);
     }
   } catch (err) {
     console.log(err);

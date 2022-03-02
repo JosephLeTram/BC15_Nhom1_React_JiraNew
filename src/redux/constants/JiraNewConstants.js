@@ -81,3 +81,18 @@ export const HANDLE_CHANGE_POST_API_SAGA = "HANDLE_CHANGE_POST_API_SAGA";
 
 // Update Task Status
 export const UPDATE_TASK_STATUS_SAGA = "UPDATE_TASK_STATUS_SAGA";
+
+// Comment Section
+// Get all comments
+export const GET_ALL_COMMENT_SAGA = "GET_ALL_COMMENT_SAGA";
+export const GET_ALL_COMMENT_REDUCER = "GET_ALL_COMMENT_REDUCER";
+
+// Insert new comment
+export const INSERT_COMMENT_SAGA = "INSERT_COMMENT_SAGA";
+export const INSERT_COMMENT_REDUCER = "INSERT_COMMENT_REDUCER";
+
+// Delete Comment
+export const DELETE_COMMENT_SAGA = "DELETE_COMMENT_SAGA";
+
+// Update Commetn
+export const UPDATE_COMMENT_SAGA = "UPDATE_COMMENT_SAGA";

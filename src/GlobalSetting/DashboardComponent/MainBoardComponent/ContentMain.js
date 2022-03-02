@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import {
+  GET_ALL_COMMENT_SAGA,
   GET_TASK_DETAIL_SAGA,
   UPDATE_TASK_STATUS_SAGA,
 } from "../../../redux/constants/JiraNewConstants";
@@ -78,8 +79,14 @@ export default function ContentMain(props) {
                                   data-toggle="modal"
                                   data-target="#infoModal"
                                   onClick={() => {
+                                    // Call API to retrieve task detail data upon clicking
                                     dispatch({
                                       type: GET_TASK_DETAIL_SAGA,
+                                      taskId: task.taskId,
+                                    });
+                                    // Call API to retrieve comment detail data upon clicking
+                                    dispatch({
+                                      type: GET_ALL_COMMENT_SAGA,
                                       taskId: task.taskId,
                                     });
                                   }}

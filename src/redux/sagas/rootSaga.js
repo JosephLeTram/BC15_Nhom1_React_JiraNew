@@ -17,6 +17,10 @@ import * as StatusTypeSaga from "./StatusTypeSaga";
 import * as TaskDetailSaga from "./TaskDetailSaga";
 import * as TaskUpdateSaga from "./TaskUpdateSaga";
 import * as TaskStatusUpdateSaga from "./TaskStatusUpdateSaga";
+import * as CommentListSaga from "./CommentListSaga";
+import * as CommenInsertSaga from "./CommentInsertSaga";
+import * as CommentDeleteSaga from "./CommentDeleteSaga";
+import * as CommentUpdateSaga from "./CommentUpdateSaga";
 
 export function* rootSaga() {
   yield all([
@@ -38,5 +42,9 @@ export function* rootSaga() {
     TaskDetailSaga.followGetTaskDetailSaga(),
     TaskUpdateSaga.followHandleChangePostApi(),
     TaskStatusUpdateSaga.followUpdateTaskStatus(),
+    CommentListSaga.followGetCommentListSaga(),
+    CommenInsertSaga.followInsertCommentListSaga(),
+    CommentDeleteSaga.followDeleteCommentSaga(),
+    CommentUpdateSaga.followUpdateComment(),
   ]);
 }

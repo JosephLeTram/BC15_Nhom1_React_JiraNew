@@ -10,6 +10,9 @@ import {
   GET_ALL_TASK_TYPE_SAGA,
   HANDLE_CHANGE_POST_API_SAGA,
   REMOVE_TASK_ASSIGNEE,
+  INSERT_COMMENT_SAGA,
+  DELETE_COMMENT_SAGA,
+  UPDATE_COMMENT_SAGA,
 } from "../../../redux/constants/JiraNewConstants";
 import { Select } from "antd";
 
@@ -20,9 +23,28 @@ export default function InfoModal(props) {
   const { priorityType } = useSelector((state) => state.PriorityTypeReducer);
   const { taskType } = useSelector((state) => state.TaskTypeReducer);
   const { projectDetail } = useSelector((state) => state.ProjectEditReducer);
+  const { userLogin } = useSelector((state) => state.UserReducer);
+  const { commentList } = useSelector((state) => state.CommentListReducer);
+  const { dateTime } = useSelector((state) => state.CommentListReducer);
+  const dayjs = require("dayjs");
+  const commentDate = dateTime.toString().substring(0, 10);
+  const formatCommentDate = dayjs(commentDate).format("DD/MM/YYYY");
+
+  console.log("taskId", taskDetailModel.taskId);
+  console.log("commentDateTime", dateTime);
+  console.log("formatCommentDate", formatCommentDate);
+
+  // set initial state
   const [visiblEditor, setVisibleEditor] = useState(false);
+  const [visibleCommentEditor, setVisibleCommentEditor] = useState(false);
+  const [commentDateTime, setCommentDateTime] = useState("1/1/2022");
+
+  const currentCommentContent = (e) => {
+    setCommentContent(e.target.value);
+  };
 
   const [content, setContent] = useState(taskDetailModel.description);
+  const [commentContent, setCommentContent] = useState("");
 
   // Editor TinyCME
   const editorRef = useRef(null);
@@ -111,6 +133,137 @@ export default function InfoModal(props) {
       </div>
     );
   };
+  console.log("commentList", commentList);
+
+  const renderContentComment = () => {
+    return (
+      <div className="lastest-comment">
+        {commentList?.map((comment, index) => {
+          return (
+            <div>
+              {visibleCommentEditor ? (
+                <div>
+                  <Editor
+                    onInit={(evt, editor) => (editorRef.current = editor)}
+                    name="contentComment"
+                    initialValue={comment?.contentComment}
+                    init={{
+                      height: 500,
+                      menubar: false,
+                      plugins: [
+                        "advlist autolink lists link image charmap print preview anchor",
+                        "searchreplace visualblocks code fullscreen",
+                        "insertdatetime media table paste code help wordcount",
+                      ],
+                      toolbar:
+                        "undo redo | formatselect | " +
+                        "bold italic backcolor | alignleft aligncenter " +
+                        "alignright alignjustify | bullist numlist outdent indent | " +
+                        "removeformat | help",
+                      content_style:
+                        "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                    }}
+                    onEditorChange={(content, editor) => {
+                      // get rid of  tag <p></p>  by using substring
+                      const subContent = content.substring(
+                        3,
+                        content.length - 4
+                      );
+                      setCommentContent(subContent);
+                    }}
+                  />
+                  <button
+                    className="btn btn-primary m-2"
+                    onClick={() => {
+                      dispatch({
+                        type: UPDATE_COMMENT_SAGA,
+                        commentUpdateModel: {
+                          id: comment.id,
+                          contentComment: commentContent,
+                        },
+                        taskId: comment.taskId,
+                      });
+                      setCommentDateTime(formatCommentDate);
+                      setVisibleCommentEditor(false);
+                    }}
+                  >
+                    Save
+                  </button>
+                  <button
+                    className="btn btn-danger m-2"
+                    onClick={() => {
+                      setVisibleCommentEditor(false);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              ) : (
+                <div key={index} className="comment-item mt-3">
+                  <div className="display-comment" style={{ display: "flex" }}>
+                    <div className="avatar">
+                      <img
+                        src={comment.user?.avatar}
+                        alt={comment.user?.avatar}
+                      />
+                    </div>
+                    <div>
+                      <p style={{ marginBottom: 5 }}>
+                        {comment.user?.name}
+                        <span
+                          className="ml-2"
+                          style={{
+                            fontWeight: "bold",
+                            color: "blue",
+                          }}
+                        >
+                          {commentDateTime}
+                        </span>
+                      </p>
+                      <p style={{ marginBottom: 5 }}>
+                        {comment.contentComment}
+                      </p>
+                      <div>
+                        <span
+                          className="mr-2"
+                          style={{
+                            color: "blue",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => {
+                            console.log("commentId", comment.id);
+                            setVisibleCommentEditor(!visibleCommentEditor);
+                          }}
+                        >
+                          Edit
+                        </span>
+
+                        <span
+                          style={{
+                            color: "red",
+                            cursor: "pointer",
+                          }}
+                          onClick={() => {
+                            dispatch({
+                              type: DELETE_COMMENT_SAGA,
+                              idComment: comment.id,
+                              taskId: comment.taskId,
+                            });
+                          }}
+                        >
+                          Delete
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -185,6 +338,7 @@ export default function InfoModal(props) {
       </div>
     );
   };
+
   return (
     <div
       className="modal fade"
@@ -254,69 +408,36 @@ export default function InfoModal(props) {
                     <h6>Comment</h6>
                     <div className="block-comment" style={{ display: "flex" }}>
                       <div className="avatar">
-                        <img
-                          src={require("../../../assets/img/download (1).jfif")}
-                          alt="img 8"
-                        />
+                        <img src={userLogin?.avatar} alt="adfgasdf" />
                       </div>
                       <div className="input-comment">
-                        <input type="text" placeholder="Add a comment ..." />
-                        <p>
-                          <span
-                            style={{
-                              fontWeight: 500,
-                              color: "gray",
-                              marginRight: "5px",
-                            }}
-                          >
-                            Protip:
-                          </span>
-                          <span>
-                            press
-                            <span
-                              style={{
-                                fontWeight: "bold",
-                                background: "#ecedf0",
-                                color: "#b4bac6",
-                              }}
-                            >
-                              M
-                            </span>
-                            to comment
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="lastest-comment">
-                      <div className="comment-item">
-                        <div
-                          className="display-comment"
-                          style={{ display: "flex" }}
+                        <input
+                          type="text"
+                          placeholder="Add a comment ..."
+                          onChange={currentCommentContent}
+                        />
+                        <button
+                          type="submit"
+                          className="btn btn-primary my-2 float-right"
+                          onClick={() => {
+                            console.log(" commentContent", commentContent);
+                            console.log("taskId", taskDetailModel.taskId);
+                            // Call API to get all comments
+                            dispatch({
+                              type: INSERT_COMMENT_SAGA,
+                              commentModel: {
+                                taskId: Number(taskDetailModel.taskId),
+                                contentComment: commentContent,
+                                user: userLogin,
+                              },
+                            });
+                          }}
                         >
-                          <div className="avatar">
-                            <img
-                              src={require("../../../assets/img/download (1).jfif")}
-                              alt="img 9"
-                            />
-                          </div>
-                          <div>
-                            <p style={{ marginBottom: 5 }}>
-                              Lord Gaben <span>a month ago</span>
-                            </p>
-                            <p style={{ marginBottom: 5 }}>
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit. Repellendus tempora ex
-                              voluptatum saepe ab officiis alias totam ad
-                              accusamus molestiae?
-                            </p>
-                            <div>
-                              <span style={{ color: "#929398" }}>Edit</span>•
-                              <span style={{ color: "#929398" }}>Delete</span>
-                            </div>
-                          </div>
-                        </div>
+                          Post
+                        </button>
                       </div>
                     </div>
+                    {renderContentComment()}
                   </div>
                 </div>
                 <div className="col-4">
@@ -341,9 +462,8 @@ export default function InfoModal(props) {
                   </div>
                   <div className="assignees mt-3">
                     <h6>ASSIGNEES</h6>
-
                     <div className="row ">
-                      {taskDetailModel.assigness.map((assignee, index) => {
+                      {taskDetailModel.assigness?.map((assignee, index) => {
                         return (
                           <div className="col-6 my-2">
                             <div

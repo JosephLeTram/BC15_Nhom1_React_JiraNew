@@ -235,4 +235,54 @@ export const jiraNewService = {
       },
     });
   },
+
+  // Comment Section
+  // Get All Comments
+  getAllComment: (taskId) => {
+    return Axios({
+      url: `${DOMAIN}/Comment/getAll?taskId=${taskId}`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+  // Insert New Comment
+  insertNewComment: (commentModel) => {
+    return Axios({
+      url: `${DOMAIN}/Comment/insertComment`,
+      method: "POST",
+      data: commentModel,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
+  // Delete a comment
+  deleteComment: (idComment) => {
+    return Axios({
+      url: `${DOMAIN}/Comment/deleteComment?idComment=${idComment}`,
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
+  // Update a comment
+  updateComment: (commentUpdateModel) => {
+    return Axios({
+      url: `${DOMAIN}/Comment/updateComment?id=${commentUpdateModel.id}&contentComment=${commentUpdateModel.contentComment}`,
+      method: "PUT",
+      data: commentUpdateModel,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
 };
