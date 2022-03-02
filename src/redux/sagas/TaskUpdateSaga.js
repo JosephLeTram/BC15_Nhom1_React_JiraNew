@@ -72,7 +72,7 @@ export function* handleChangePostApi(action) {
       });
       notificationFunction(
         "success",
-        `Task ${taskUpdateApi.taskName}`,
+        `Task {${taskUpdateApi.taskName}}`,
         "A task has been succesfully updated"
       );
     }
@@ -81,7 +81,7 @@ export function* handleChangePostApi(action) {
     console.log(error.response?.data);
     notificationFunction(
       "error",
-      `Task ${taskUpdateApi.taskName}`,
+      `Task {${taskUpdateApi.taskName}}`,
       "A task has failed to update"
     );
   }

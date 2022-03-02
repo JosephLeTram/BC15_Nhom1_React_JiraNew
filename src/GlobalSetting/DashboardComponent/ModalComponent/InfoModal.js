@@ -13,8 +13,10 @@ import {
   INSERT_COMMENT_SAGA,
   DELETE_COMMENT_SAGA,
   UPDATE_COMMENT_SAGA,
+  REMOVE_TASK_SAGA,
 } from "../../../redux/constants/JiraNewConstants";
 import { Select } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 
 export default function InfoModal(props) {
   // Retrieve data from Reducer
@@ -383,7 +385,16 @@ export default function InfoModal(props) {
                 <i className="fa fa-link" />
                 <span style={{ paddingRight: 20 }}>Copy link</span>
               </div>
-              <i className="fa fa-trash-alt" style={{ cursor: "pointer" }} />
+              <DeleteOutlined
+                style={{ cursor: "pointer", fontSize: 20 }}
+                onClick={() => {
+                  dispatch({
+                    type: REMOVE_TASK_SAGA,
+                    taskId: taskDetailModel.taskId,
+                    projectId: taskDetailModel.projectId,
+                  });
+                }}
+              />
               <button
                 type="button"
                 className="close"

@@ -224,6 +224,18 @@ export const jiraNewService = {
     });
   },
 
+  // Delete Task:
+  deleteTask: (taskId) => {
+    return Axios({
+      url: `${DOMAIN}/Project/removeTask?taskId=${taskId}`,
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
   // Status ID Service
   getAllStatusType: () => {
     return Axios({
