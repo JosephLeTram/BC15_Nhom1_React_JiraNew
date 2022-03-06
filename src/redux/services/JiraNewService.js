@@ -6,11 +6,62 @@ const {
 } = require("../../GlobalSetting/domain");
 
 export const jiraNewService = {
+  //User Section
+  // Get List of User
+  getUserList: () => {
+    return Axios({
+      url: `${DOMAIN}/Users/getUser`,
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+  // User Create
+  createUser: (userCreateModel) => {
+    return Axios({
+      url: `${DOMAIN}/Users/signup`,
+      method: "POST",
+      data: userCreateModel,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
+  // Delete User
+  deleteUser: (deletedUserId) => {
+    return Axios({
+      url: `${DOMAIN}/Users/deleteUser?id=${deletedUserId}`,
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
+    });
+  },
+
+  // User Signin/Login
   jiraSignin: (userLogin) => {
     return Axios({
       url: `${DOMAIN}/Users/signin`,
       method: "POST",
       data: userLogin,
+    });
+  },
+
+  //User Update
+  updateUser: (userUpdated) => {
+    return Axios({
+      url: `${DOMAIN}/Users/editUser`,
+      method: "PUT",
+      data: userUpdated,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem(TOKEN_AUTHORIZATION),
+        TokenCybersoft: TOKEN_CYBERSOFT,
+      },
     });
   },
 

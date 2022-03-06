@@ -18,11 +18,6 @@ function FormEditProject(props) {
   );
   const dispatch = useDispatch();
 
-  // const submitForm = (event) => {
-  //   event.preventDefault();
-  //   alert("Submit Edit Succesfully");
-  // };
-
   //Component dismount
   useEffect(() => {
     // Call API to retrieve selected options

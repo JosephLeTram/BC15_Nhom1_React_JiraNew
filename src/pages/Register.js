@@ -1,11 +1,20 @@
 import React from "react";
 import { Button, Input } from "antd";
-import { UserOutlined, LockOutlined, TwitterOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  IeOutlined,
+  LockOutlined,
+  TwitterOutlined,
+  PhoneOutlined,
+} from "@ant-design/icons";
 
 import { withFormik } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
-import { signin_action } from "../redux/actions/JiraNewAction";
+import { jiraNewService } from "../redux/services/JiraNewService";
+import { CREATE_USER_SAGA } from "../redux/constants/JiraNewConstants";
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 function Register(props) {
   const { errors, handleChange, handleSubmit } = props;
@@ -24,6 +33,7 @@ function Register(props) {
             <h3 className="text-center display-4 font-weight-bold">
               CyberSoft Jira Register
             </h3>
+            {/* Input for email */}
             <div className="mt-3">
               <Input
                 onChange={handleChange}
@@ -31,7 +41,7 @@ function Register(props) {
                 type="email"
                 name="email"
                 placeholder="email"
-                prefix={<UserOutlined />}
+                prefix={<IeOutlined />}
               />
             </div>
 
@@ -44,14 +54,44 @@ function Register(props) {
                 onChange={handleChange}
                 type="password"
                 size="large"
-                name="password"
+                name="passWord"
                 placeholder="password"
                 prefix={<LockOutlined />}
               />
             </div>
 
             {/* errors for password */}
-            <div className="text-danger mt-2">{errors.password}</div>
+            <div className="text-danger mt-2">{errors.passWord}</div>
+
+            {/* Input for name */}
+            <div className="mt-3">
+              <Input
+                onChange={handleChange}
+                type="text"
+                size="large"
+                name="name"
+                placeholder="username"
+                prefix={<UserOutlined />}
+              />
+            </div>
+
+            {/* errors for name */}
+            <div className="text-danger mt-2">{errors.name}</div>
+
+            {/* Input for phoneNumber */}
+            <div className="mt-3">
+              <Input
+                onChange={handleChange}
+                type="text"
+                size="large"
+                name="phoneNumber"
+                placeholder="phoneNumber"
+                prefix={<PhoneOutlined />}
+              />
+            </div>
+
+            {/* errors for phoneNumber */}
+            <div className="text-danger mt-2">{errors.phoneNumber}</div>
 
             <Button
               htmlType="submit"
@@ -86,10 +126,12 @@ function Register(props) {
   );
 }
 
-const LoginWithFormik = withFormik({
+const CreateWithFormik = withFormik({
   mapPropsToValues: () => ({
     email: "",
-    password: "",
+    passWord: "",
+    name: "",
+    phoneNumber: "",
   }),
 
   //validation
@@ -97,17 +139,42 @@ const LoginWithFormik = withFormik({
     email: Yup.string()
       .required("Email is required!") // check  if Empty
       .email("Email is invalid!"),
-    password: Yup.string()
+    passWord: Yup.string()
       .required("Password is required")
       .min(6, "Password must have min 6 characters")
       .max(12, "Password exceeds 12 characters"),
+    name: Yup.string()
+      .required("Username is required")
+      .min(6, "Username must have min 6 characters"),
+    phoneNumber: Yup.string()
+      .required("Phone No. is required")
+      .min(9, "Phone No. must have min 9 number")
+      .matches(phoneRegExp, "Phone number is not valid"),
   }),
 
   handleSubmit: (values, { props, setSubmitting }) => {
-    props.dispatch(signin_action(values.email, values.password));
+    console.log(
+      "email",
+      values.email,
+      "pass",
+      values.passWord,
+      "name",
+      values.name,
+      "phone",
+      values.phoneNumber
+    );
+    props.dispatch({
+      type: CREATE_USER_SAGA,
+      userCreateModel: {
+        email: values.email.toString(),
+        passWord: values.passWord.toString(),
+        name: values.name.toString(),
+        phoneNumber: values.phoneNumber.toString(),
+      },
+    });
   },
 
-  displayName: "CyberSoft Jira Login",
+  displayName: "CyberSoft Jira Register",
 })(Register);
 
-export default connect()(LoginWithFormik);
+export default connect()(CreateWithFormik);

@@ -12,6 +12,7 @@ import { UserLoginTemplate } from "./templates/HomeTemplate/UserLoginTemplate";
 import Register from "./pages/Register";
 import ProjectManagement from "./pages/ProjectManagement/ProjectManagement";
 import ModalTemplate from "./templates/ModalTemplate/ModalTemplate";
+import UserManagement from "./pages/UserManagement/UserManagement";
 
 function App() {
   const history = useHistory();
@@ -41,6 +42,11 @@ function App() {
           exact
           path="/projectmanagement"
           Component={ProjectManagement}
+        />
+        <JiraNewTemplate
+          exact
+          path="/usermanagement"
+          Component={UserManagement}
         />
         <JiraNewTemplate
           exact

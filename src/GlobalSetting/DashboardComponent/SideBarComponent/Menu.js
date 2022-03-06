@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { UserSwitchOutlined, MedicineBoxOutlined } from "@ant-design/icons";
 
 export default function Menu() {
   return (
@@ -38,13 +39,23 @@ export default function Menu() {
           </NavLink>
         </div>
         <div>
-          <i className="fa fa-cog mr-3" />
+          <MedicineBoxOutlined />
           <NavLink
             className="text-dark"
             to="/createproject"
             activeClassName="active font-weight-bold"
           >
             Create Project
+          </NavLink>
+        </div>
+        <div>
+          <UserSwitchOutlined />
+          <NavLink
+            className="text-dark"
+            to="/usermanagement"
+            activeClassName="active font-weight-bold"
+          >
+            User Management
           </NavLink>
         </div>
       </div>

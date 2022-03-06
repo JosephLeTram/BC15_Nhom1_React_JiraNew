@@ -4,33 +4,28 @@ import { jiraNewService } from "../services/JiraNewService";
 import { STATUS_CODE } from "../../GlobalSetting/domain";
 import {
   CLOSE_DRAWER,
-  DISPLAY_LOADING,
-  GET_PROJECT_LIST_SAGA,
-  HIDE_LOADING,
-  SET_SUBMIT_EDIT_PROJECT,
+  GET_LIST_USER_SAGA,
+  SET_SUBMIT_EDIT_USER,
 } from "../constants/JiraNewConstants";
 import { notificationFunction } from "../../util/Notification/notificationJira";
 
-function* updateProjectSaga(action) {
-  // Show Loading Screen
-  yield put({
-    type: DISPLAY_LOADING,
-  });
-  yield delay(1000);
+function* updateUserSaga(action) {
+  const { userUpdated } = action;
+
   try {
     const { data, status } = yield call(() =>
-      jiraNewService.updateProject(action.projectUpdated)
+      jiraNewService.updateUser(userUpdated)
     );
     // Check status before dispatch to Store
     if (status === STATUS_CODE.SUCCESS) {
       notificationFunction(
         "success",
-        `Project {${action.projectUpdated.projectName}}`,
-        "Project is succesfully updated"
+        `User {${action.userUpdated?.name}}`,
+        "User is succesfully updated"
       );
       // Refresh brower
       yield put({
-        type: GET_PROJECT_LIST_SAGA,
+        type: GET_LIST_USER_SAGA,
       });
       // Turn off drawer
       yield put({
@@ -40,14 +35,9 @@ function* updateProjectSaga(action) {
   } catch (err) {
     console.log(err);
   }
-
-  yield put({
-    type: HIDE_LOADING,
-  });
-  yield delay(500);
 }
 
-export function* followUpdateProjectSaga() {
+export function* followUpdateUserSaga() {
   //only take the latest input from users
-  yield takeLatest(SET_SUBMIT_EDIT_PROJECT, updateProjectSaga);
+  yield takeLatest(SET_SUBMIT_EDIT_USER, updateUserSaga);
 }

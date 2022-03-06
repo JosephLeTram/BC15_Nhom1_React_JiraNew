@@ -14,6 +14,8 @@ import { PriorityTypeReducer } from "./PriorityTypeReducer";
 import { StatusReducer } from "./StatusReducer";
 import { TaskDetailReducer } from "./TaskDetailReducer";
 import { CommentListReducer } from "./CommentListReducer";
+import { UserListReducer } from "./UserListReducer";
+import { UserEditReducer } from "./UserEditReducer";
 
 const rootReducer = combineReducers({
   signInReducer,
@@ -31,6 +33,8 @@ const rootReducer = combineReducers({
   SearchUserReducerByProjectId,
   TaskDetailReducer,
   CommentListReducer,
+  UserListReducer,
+  UserEditReducer,
 });
 
 export default rootReducer;

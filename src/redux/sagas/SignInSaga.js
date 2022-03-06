@@ -45,7 +45,7 @@ function* signin(action) {
     let history = yield select((state) => state.HistoryReducer.history);
 
     //Chage web link directory
-    history.push("/dashboard");
+    history.push("/projectmanagement");
   } catch (err) {
     //if data failed to retrieve
 

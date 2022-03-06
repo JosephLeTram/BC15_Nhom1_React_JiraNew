@@ -32,10 +32,6 @@ export default function InfoModal(props) {
   const commentDate = dateTime.toString().substring(0, 10);
   const formatCommentDate = dayjs(commentDate).format("DD/MM/YYYY");
 
-  console.log("taskId", taskDetailModel.taskId);
-  console.log("commentDateTime", dateTime);
-  console.log("formatCommentDate", formatCommentDate);
-
   // set initial state
   const [visiblEditor, setVisibleEditor] = useState(false);
   const [visibleCommentEditor, setVisibleCommentEditor] = useState(false);
@@ -135,7 +131,6 @@ export default function InfoModal(props) {
       </div>
     );
   };
-  console.log("commentList", commentList);
 
   const renderContentComment = () => {
     return (
@@ -233,7 +228,6 @@ export default function InfoModal(props) {
                             cursor: "pointer",
                           }}
                           onClick={() => {
-                            console.log("commentId", comment.id);
                             setVisibleCommentEditor(!visibleCommentEditor);
                           }}
                         >
@@ -391,6 +385,7 @@ export default function InfoModal(props) {
                   dispatch({
                     type: REMOVE_TASK_SAGA,
                     taskId: taskDetailModel.taskId,
+                    taskName: taskDetailModel.taskName,
                     projectId: taskDetailModel.projectId,
                   });
                 }}
@@ -431,8 +426,6 @@ export default function InfoModal(props) {
                           type="submit"
                           className="btn btn-primary my-2 float-right"
                           onClick={() => {
-                            console.log(" commentContent", commentContent);
-                            console.log("taskId", taskDetailModel.taskId);
                             // Call API to get all comments
                             dispatch({
                               type: INSERT_COMMENT_SAGA,

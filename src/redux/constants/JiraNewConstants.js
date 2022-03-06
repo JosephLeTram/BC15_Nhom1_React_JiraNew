@@ -3,9 +3,24 @@ export const DISPLAY_LOADING = "DISPLAY_LOADING";
 export const HIDE_LOADING = "HIDE_LOADING";
 export const ADD_HISTORY = "ADD_HISTORY";
 
+// User Section
+// List of User
+export const GET_LIST_USER_SAGA = "GET_LIST_USER_SAGA";
+export const GET_LIST_USER_REDUCER = "GET_LIST_USER_REDUCER";
+// User Create
+export const CREATE_USER_SAGA = "CREATE_USER_SAGA";
+
+// User Delete
+export const DELETE_USER_SAGA = "DELETE_USER_SAGA";
+
 // User Login
 export const USER_LOG_IN = "USER_LOG_IN";
 export const USER_SIGNIN_API = "USER_SIGNIN_API";
+
+// User Edit
+export const SET_SUBMIT_EDIT_USER = "SET_SUBMIT_EDIT_USER";
+export const OPEN_FORM_EDIT_USER = "OPEN_FORM_EDIT_USER";
+export const EDIT_USER_SAGA = "EDIT_USER_SAGA";
 
 // PROJECT
 // Project Category
@@ -27,7 +42,6 @@ export const OPEN_FORM_EDIT_PROJECT = "OPEN_FORM_EDIT_PROJECT";
 
 // Edit Project
 export const SET_SUBMIT_EDIT_PROJECT = "SET_SUBMIT_EDIT_PROJECT";
-export const SET_SUBMIT_CREATE_TASK = "SET_SUBMIT_CREATE_TASK";
 export const EDIT_PROJECT_SAGA = "EDIT_PROJECT_SAGA";
 
 // Delete Project
@@ -54,6 +68,7 @@ export const GET_PROJECT_DETAIL_REDUCER = "GET_PROJECT_DETAIL_REDUCER";
 
 // Create Task
 export const OPEN_FORM_CREATE_TASK = "OPEN_FORM_CREATE_TASK";
+export const SET_SUBMIT_CREATE_TASK = "SET_SUBMIT_CREATE_TASK";
 export const CREATE_TASK_SAGA = "CREATE_TASK_SAGA";
 
 //Get Task Detail

@@ -5,6 +5,7 @@ import {
 } from "../constants/JiraNewConstants";
 import { jiraNewService } from "../services/JiraNewService";
 import { STATUS_CODE } from "../../GlobalSetting/domain";
+import { notificationFunction } from "../../util/Notification/notificationJira";
 
 function* removeTaskSaga(action) {
   const { taskId } = action;
@@ -13,6 +14,11 @@ function* removeTaskSaga(action) {
       jiraNewService.deleteTask(taskId)
     );
     if (status === STATUS_CODE.SUCCESS) {
+      notificationFunction(
+        "success",
+        `Task {${action.taskName}}`,
+        "Task is succesfully deleted"
+      );
       // Refresh after deleting succesfully
       yield put({
         type: GET_PROJECT_DETAIL_SAGA,

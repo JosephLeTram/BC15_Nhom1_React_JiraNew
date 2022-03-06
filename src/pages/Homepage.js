@@ -7,7 +7,7 @@ export default function Homepage() {
 
   //Chage web link directory
   const goToSignIn = () => {
-    alert("Đang chuyển về Login Page !");
+    // alert("Đang chuyển về Login Page !");
     history.push("/login");
   };
   return (
