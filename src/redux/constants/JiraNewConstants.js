@@ -9,6 +9,8 @@ export const GET_LIST_USER_SAGA = "GET_LIST_USER_SAGA";
 export const GET_LIST_USER_REDUCER = "GET_LIST_USER_REDUCER";
 // User Create
 export const CREATE_USER_SAGA = "CREATE_USER_SAGA";
+export const PASSWORD = "PASSWORD";
+export const NEW_USER_LOGIN = "NEW_USER_LOGIN";
 
 // User Delete
 export const DELETE_USER_SAGA = "DELETE_USER_SAGA";

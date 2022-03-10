@@ -83,8 +83,9 @@ function FormEditProject(props) {
           <div className="form-group">
             <h4>Description</h4>
             <Editor
-              onInit={(evt, editor) => (editorRef.current = editor)}
+              // onInit={(evt, editor) => (editorRef.current = editor)}
               name="description"
+              initialValue={values.description}
               value={values.description}
               init={{
                 height: 500,

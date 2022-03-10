@@ -4,20 +4,21 @@ import { jiraNewService } from "../services/JiraNewService";
 import { STATUS_CODE } from "../../GlobalSetting/domain";
 import {
   CREATE_USER_SAGA,
-  GET_LIST_USER_REDUCER,
   GET_LIST_USER_SAGA,
+  NEW_USER_LOGIN,
+  PASSWORD,
 } from "../constants/JiraNewConstants";
 import { notificationFunction } from "../../util/Notification/notificationJira";
 
 function* createUserSaga(action) {
-  console.log("createa user action", action);
   try {
     const { data, status } = yield call(() =>
       jiraNewService.createUser(action.userCreateModel)
     );
     // Check status before dispatch to Store
     if (status === STATUS_CODE.SUCCESS) {
-      console.log("data", data);
+      localStorage.setItem(NEW_USER_LOGIN, JSON.stringify(data.content));
+      localStorage.setItem(PASSWORD, JSON.stringify(data.content.passWord));
       //Refresh List of Users
       yield put({
         type: GET_LIST_USER_SAGA,
