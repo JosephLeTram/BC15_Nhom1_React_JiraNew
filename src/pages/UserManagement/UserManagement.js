@@ -28,8 +28,6 @@ export default function UserManagement(props) {
   //retrieve Project List data from Reducer to Component
   const { userList } = useSelector((state) => state.UserListReducer);
   const { userLogin } = useSelector((state) => state.UserReducer);
-  console.log("userLogin", userLogin);
-  console.log("userLogin.password", userLogin.password);
   // retrieve User Login Data from Reducer to Component
   const { userSearch } = useSelector((state) => state.SearchUserReducer);
 
@@ -254,8 +252,11 @@ export default function UserManagement(props) {
           </ol>
         </nav>
         <h3>
-          Hi, <span> {userList[190]?.name} </span>
-          <Avatar src={userList[190]?.avatar} />
+          Hi, <span> Hung </span>
+          <Avatar
+            src="https://ui-avatars.com/api/?name=Hung"
+            alt="https://ui-avatars.com/api/?name=Hung"
+          />
         </h3>
       </div>
       <h3>User Management</h3>

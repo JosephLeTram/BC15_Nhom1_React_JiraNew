@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0cb12761.css",
+    "main.js": "/static/js/main.049b455d.js",
+    "static/js/787.579257de.chunk.js": "/static/js/787.579257de.chunk.js",
+    "static/media/loading.gif": "/static/media/loading.d361d03b1cadb8f4e5fc.gif",
+    "static/media/jira-la-gi.jpg": "/static/media/jira-la-gi.d47bc92ad0f1d036ed26.jpg",
+    "static/media/download.jfif": "/static/media/download.ef0b58c72b10cde41e26.jfif",
+    "index.html": "/index.html",
+    "main.0cb12761.css.map": "/static/css/main.0cb12761.css.map",
+    "main.049b455d.js.map": "/static/js/main.049b455d.js.map",
+    "787.579257de.chunk.js.map": "/static/js/787.579257de.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0cb12761.css",
+    "static/js/main.049b455d.js"
+  ]
+}

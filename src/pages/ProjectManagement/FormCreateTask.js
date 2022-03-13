@@ -184,7 +184,7 @@ function FormCreateTask(props) {
           <div className="row">
             <div className="col-6">
               <p>Reporter</p>
-              <Input />
+              <Input value={"Hung"} />
             </div>
             <div className="col-6">
               <p>Assignees</p>
